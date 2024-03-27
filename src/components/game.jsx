@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import "./game.css"
 import dice1 from "/public/assets/dice_1.png"
 import { DieImages } from './allDieImages'
-
+import { Button } from './Button';
+const NumArray =[1,2,3,4,5,6];
 function Game() {
     //to set 'clicked' className in div.dice-img-container, to trigger animation
     const [isClicked,setIsClicked] = useState(false);
@@ -15,11 +16,11 @@ function Game() {
     const [score,setScore] = useState(0);
 
     function handleOnClick(e) {
+        console.log(e.target)
         const { dataset:{value} } = e.target; //typeof value -> string
         setBtnIsClicked(prev=>!prev);
         setSelectedDieNum(value);
     }
-
     function handleDiceRoll() {
         setIsClicked(true);
         const randomDieNum = getRandomNumber(0,5);
@@ -31,7 +32,6 @@ function Game() {
             setIsClicked(false)
         },1000)
     }
-
     function checkGame(currentDieNum) {
         if(selectedDieNum == currentDieNum)
         {
@@ -60,12 +60,14 @@ function Game() {
             </div>
             <div className="choice-selector-container">
                 <div className='choices'>
-                    <button className={`btn`} onClick={handleOnClick}><div className={`choice  ${btnIsClicked ? 'clicked' : ''}`} data-value={1}>1</div></button>
-                    <button className={`btn`} onClick={handleOnClick}><div className={`choice  ${btnIsClicked ? 'clicked' : ''}`} data-value={2}>2</div></button>
-                    <button className={`btn`} onClick={handleOnClick}><div className={`choice  ${btnIsClicked ? 'clicked' : ''}`} data-value={3}>3</div></button>
-                    <button className={`btn`} onClick={handleOnClick}><div className={`choice  ${btnIsClicked ? 'clicked' : ''}`} data-value={4}>4</div></button>
-                    <button className={`btn`} onClick={handleOnClick}><div className={`choice  ${btnIsClicked ? 'clicked' : ''}`} data-value={5}>5</div></button>
-                    <button className={`btn`} onClick={handleOnClick}><div className={`choice  ${btnIsClicked ? 'clicked' : ''}`} data-value={6}>6</div></button>
+                    {NumArray.map((num)=>{
+                        return <Button 
+                                    key={num}
+                                    handleOnClick={handleOnClick}
+                                    btnIsClicked={btnIsClicked}
+                                    dataValue={num}
+                                />
+                    })}
                 </div>
                 <p style={{fontSize:'25px', alignSelf:'self-end'}} className='m-0'>Select Dice Number</p>
             </div>

@@ -7,11 +7,7 @@ section{
 .btn{
     padding: 0;
     border: none;
-    background-color: #fff;
-}
-.btn .clicked{
-    background-color: #000;
-    color: #fff;
+    background-color: rgb(255, 255, 255);
 }
 .game-header{
     width: 1280px;
@@ -47,12 +43,12 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s ease-out;
+    transition: all 0.3s ease-out;
 }
 .choice:hover{
     cursor: pointer;
-    background-color: #000;
-    color: #fff;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .main-game-container{
@@ -84,5 +80,5 @@ section{
   }
   
   .dice-img-container.clicked img {
-    animation: diceAnimation 1s linear; /* Apply the animation */
+    animation: diceAnimation 1s linear; /* animation */
   }
